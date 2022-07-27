@@ -1,0 +1,6 @@
+2022-07-27 17:52:44 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]PLANT"; expected "PREPARE"; SQL statement:
+PLANT [42001-214]
+2022-07-27 17:52:53 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLANTS" not found; SQL statement:
+SELECT * FROM plants [42102-214]
