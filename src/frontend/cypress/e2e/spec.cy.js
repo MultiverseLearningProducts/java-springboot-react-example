@@ -1,0 +1,16 @@
+describe('The plants page', () => {
+  it('add an item to the cart', () => {
+    cy.visit('http://localhost:8080/')
+    cy.get('article h2').contains('Boston Fern')
+    cy.get('header article section h1 a')
+      .should('not.contain', '(1)')
+      .and('contain', '🛒')
+    cy.get('button').should('contain', 'Buy')
+    cy.get('button').first().click()
+    cy.get('header article section h1 mark')
+      .should('contain', '(1)')
+    cy.get('header article section h1 a').click()
+    cy.get('main section section h2').should('be.visible')
+    cy.get('main section section h3').should('contain', '13.95') 
+  })
+})
