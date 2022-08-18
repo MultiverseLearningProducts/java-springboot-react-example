@@ -6,7 +6,7 @@ import { CartView } from './CartView'
 
 export function App() {
     const [plants, setPlants] = useState([])
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(new Map())
 
     useEffect(() => {
         fetch('/api/plants')
@@ -16,7 +16,18 @@ export function App() {
     }, [])
 
     const addToCart = (plant) => {
-        setCart([...cart, plant])
+        if (cart.has(plant)) {
+            const qty = cart.get(plant)
+            cart.set(plant, qty + 1)
+        } else {
+            cart.set(plant, 1)
+        }
+        setCart(new Map(cart))
+    }
+
+    const removeFromCart = (plant) => {
+        cart.delete(plant)
+        setCart(new Map(cart))
     }
 
     return (
@@ -30,7 +41,7 @@ export function App() {
                 </header>
                 <Routes>
                     <Route path="/" element={<GridView plants={plants} addToCart={addToCart} />}></Route>
-                    <Route path="/cart" element={<CartView cart={cart}/>}></Route>
+                    <Route path="/cart" element={<CartView cart={cart} removeFromCart={removeFromCart} />}></Route>
                 </Routes>
             </BrowserRouter>
         </section>

@@ -29249,7 +29249,8 @@ function CartView({ cart  }) {
                         children: [
                             item.name,
                             " \xa3",
-                            item.price
+                            item.price,
+                            " \u274C"
                         ]
                     }, item.id, true, {
                         fileName: "src/CartView.js",

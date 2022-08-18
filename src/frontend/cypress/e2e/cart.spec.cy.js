@@ -18,4 +18,13 @@ describe('Cart Journey', () => {
         cy.get('.remove-item').first().click()
         cy.get('ol li').should('not.exist')
     })
+
+    it('can add many items to the cart', () => {
+        cy.visit('http://localhost:8080/')
+        cy.get('button').first().click().click()
+        cy.get('header article section h1 mark').should('contain', '(2)')
+        cy.get('header article section h1 a').click()
+        cy.get('ol li').should('have.length', 1)
+        cy.get('mark').first().should('contain', '2')
+    })
 })
